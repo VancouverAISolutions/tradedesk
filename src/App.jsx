@@ -73,7 +73,7 @@ const JOB_TYPES = {
   HVAC_SERVICE: { label: 'HVAC Service', icon: '❄️',  color: 'bg-blue-100 text-blue-800'   },
   HVAC_INSTALL: { label: 'HVAC Install', icon: '🔧',  color: 'bg-indigo-100 text-indigo-800' },
   PLUMBING:     { label: 'Plumbing',     icon: '🔩',  color: 'bg-cyan-100 text-cyan-800'    },
-  ELECTRICAL:   { label: 'Electrical',   icon: '⚩',  color: 'bg-yellow-100 text-yellow-800' },
+  ELECTRICAL:   { label: 'Electrical',   icon: '⚡',  color: 'bg-yellow-100 text-yellow-800' },
   INSPECTION:   { label: 'Inspection',   icon: '📋',  color: 'bg-gray-100 text-gray-800'    },
 }
 
@@ -288,7 +288,7 @@ export default function TradeDesk() {
     }),
   [jobs, filterTech, filterStatus])
 
-  // ── Mutators ──────────────────────────────────────────────────────────
+  // ── Mutators ────────────────────────────────────────────────────────────
 
   function updateJob(id, patch) {
     setJobs(prev => prev.map(j => j.id === id ? { ...j, ...patch } : j))
@@ -858,7 +858,7 @@ function JobWorkflow({ jobs, customers, activeJobId, setActiveJobId, activeJob,
               >
                 📄 Send Invoice — ${est.toFixed(2)}
               </button>
-            )}
+             )}
           </WFCard>
         )}
 
@@ -931,7 +931,7 @@ function CustomersTab({ customers, jobs, expandedCust, setExpandedCust,
                       <p className="text-xs font-semibold text-gray-700">{c.lastService}</p>
                       <p className="text-xs text-gray-400">Next: {c.nextDue}</p>
                     </div>
-                    <span className="text-gray-300 text-sm">{open ? '▲' : '▼'}|/span>
+                    <span className="text-gray-300 text-sm">{open ? '╯' : '▼'}</span>
                   </div>
                 </div>
               </button>
@@ -949,7 +949,7 @@ function CustomersTab({ customers, jobs, expandedCust, setExpandedCust,
                             <div className="flex items-center gap-2">
                               <span>{eq.type === 'HVAC' ? '❄️' : eq.type === 'Plumbing' ? '🔩' : '⚡'}</span>
                               <span className="font-semibold text-gray-800">{eq.brand} {eq.model}</span>
-                              <span className="text-gray-400 text-xs">{eq.year}</span>
+                              <spn className="text-gray-400 text-xs">{eq.year}</span>
                             </div>
                             <p className="text-xs text-gray-400 mt-0.5">S/N: {eq.serial}</p>
                           </div>
@@ -1147,7 +1147,7 @@ function Dashboard({ todayJobs, todayDone, todayActive,
                   />
                 </div>
                 <span className={`text-[10px] font-semibold leading-none ${isToday ? 'text-blue-600' : 'text-gray-400'}`}>
-                 {d.label}{isToday ? ' ●' : ''}
+                  {d.label}{isToday ? ' ●' : ''}
                 </span>
               </div>
             )
@@ -1233,7 +1233,7 @@ function Dashboard({ todayJobs, todayDone, todayActive,
 }
 
 const ACCENT = {
-  blue:   'bg-blue-50    border-blue-100',
+  blue:   'bg-blue-50   border-blue-100',
   green:  'bg-green-50  border-green-100',
   yellow: 'bg-yellow-50 border-yellow-100',
   orange: 'bg-orange-50 border-orange-100',
