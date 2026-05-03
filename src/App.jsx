@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 
-// âââ SEED DATA âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── SEED DATA ───────────────────────────────────────────────────────────────
 
 const TECHS = [
   { id: 'JM', name: 'Jake M.',  color: '#3B82F6' },
@@ -70,11 +70,11 @@ const CUSTOMERS_SEED = [
 ]
 
 const JOB_TYPES = {
-  HVAC_SERVICE: { label: 'HVAC Service', icon: 'âï¸',  color: 'bg-blue-100 text-blue-800'   },
-  HVAC_INSTALL: { label: 'HVAC Install', icon: 'ð§',  color: 'bg-indigo-100 text-indigo-800' },
-  PLUMBING:     { label: 'Plumbing',     icon: 'ð©',  color: 'bg-cyan-100 text-cyan-800'    },
-  ELECTRICAL:   { label: 'Electrical',   icon: 'â¡',  color: 'bg-yellow-100 text-yellow-800' },
-  INSPECTION:   { label: 'Inspection',   icon: 'ð',  color: 'bg-gray-100 text-gray-800'    },
+  HVAC_SERVICE: { label: 'HVAC Service', icon: '❄️',  color: 'bg-blue-100 text-blue-800'   },
+  HVAC_INSTALL: { label: 'HVAC Install', icon: '🔧',  color: 'bg-indigo-100 text-indigo-800' },
+  PLUMBING:     { label: 'Plumbing',     icon: '🔩',  color: 'bg-cyan-100 text-cyan-800'    },
+  ELECTRICAL:   { label: 'Electrical',   icon: '⚡',  color: 'bg-yellow-100 text-yellow-800' },
+  INSPECTION:   { label: 'Inspection',   icon: '📋',  color: 'bg-gray-100 text-gray-800'    },
 }
 
 const STATUSES = ['Scheduled', 'En Route', 'In Progress', 'Complete', 'Invoiced']
@@ -103,7 +103,7 @@ const JOBS_SEED = [
       diagnoseNotes: 'Filters clogged, refrigerant slightly low. Cleaned coils.',
       diagnoseCategory: 'Maintenance',
       lineItems: [
-        { id: 1, description: 'AC Filter 16Ã20 (2-pack)',  qty: 1,   unitPrice: 36  },
+        { id: 1, description: 'AC Filter 16×20 (2-pack)',  qty: 1,   unitPrice: 36  },
         { id: 2, description: 'Refrigerant R-410A (1 lb)', qty: 1,   unitPrice: 45  },
         { id: 3, description: 'Labour',                    qty: 2.5, unitPrice: 95  },
       ],
@@ -169,7 +169,7 @@ const JOBS_SEED = [
     id: 5, type: 'HVAC_INSTALL', customerId: 5, techId: 'JM',
     status: 'Scheduled', scheduledDate: fmt(addDays(today, 2)),
     address: '1050 Burrard St #2205, Vancouver BC',
-    description: 'Mini-split installation â living room unit',
+    description: 'Mini-split installation — living room unit',
     arrivedAt: null, completedAt: null,
     workflow: {
       step: 1, arrived: null,
@@ -215,7 +215,7 @@ const JOBS_SEED = [
     id: 8, type: 'ELECTRICAL', customerId: 6, techId: 'PS',
     status: 'Complete', scheduledDate: fmt(addDays(today, -2)),
     address: '3400 Boundary Rd, Burnaby BC',
-    description: 'Emergency â gymnasium breaker tripping',
+    description: 'Emergency — gymnasium breaker tripping',
     arrivedAt: '2026-05-01 14:00', completedAt: '2026-05-01 16:30',
     workflow: {
       step: 5, arrived: '2026-05-01 14:00',
@@ -234,7 +234,7 @@ const JOBS_SEED = [
   },
 ]
 
-// âââ HELPERS âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
 
 function lineTotal(items) {
   return items.reduce((s, i) => s + i.qty * i.unitPrice, 0)
@@ -255,7 +255,7 @@ function Avatar({ techId, size = 'sm' }) {
   )
 }
 
-// âââ ROOT COMPONENT ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── ROOT COMPONENT ──────────────────────────────────────────────────────────
 
 export default function TradeDesk() {
   const [activeTab,      setActiveTab]      = useState('dispatch')
@@ -288,7 +288,7 @@ export default function TradeDesk() {
     }),
   [jobs, filterTech, filterStatus])
 
-  // ââ Mutators ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // ── Mutators ────────────────────────────────────────────────────────────
 
   function updateJob(id, patch) {
     setJobs(prev => prev.map(j => j.id === id ? { ...j, ...patch } : j))
@@ -348,7 +348,7 @@ export default function TradeDesk() {
       equipment: [{ type: 'HVAC', brand: '', model: '', year: new Date().getFullYear() }] })
   }
 
-  // ââ Dashboard maths âââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // ── Dashboard maths ─────────────────────────────────────────────────────
 
   const todayStr    = fmt(today)
   const weekAgoStr  = fmt(addDays(today, -7))
@@ -386,19 +386,19 @@ export default function TradeDesk() {
   }))
   const maxBar = Math.max(...barDays.map(d => d.rev), 1)
 
-  // ââ Render âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // ── Render ───────────────────────────────────────────────────────────────
 
   const tabs = [
-    { id: 'dispatch',  label: 'ð Dispatch'  },
-    { id: 'workflow',  label: 'ð§ Workflow'  },
-    { id: 'customers', label: 'ð¥ Customers' },
-    { id: 'dashboard', label: 'ð Dashboard' },
+    { id: 'dispatch',  label: '📋 Dispatch'  },
+    { id: 'workflow',  label: '🔧 Workflow'  },
+    { id: 'customers', label: '👥 Customers' },
+    { id: 'dashboard', label: '📊 Dashboard' },
   ]
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
 
-      {/* ââ Header ââ */}
+      {/* ── Header ── */}
       <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between shadow-sm sticky top-0 z-30">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
@@ -414,7 +414,7 @@ export default function TradeDesk() {
         </span>
       </header>
 
-      {/* ââ Tabs ââ */}
+      {/* ── Tabs ── */}
       <nav className="bg-white border-b border-gray-200 px-2 sticky top-[57px] z-20">
         <div className="flex">
           {tabs.map(t => (
@@ -433,7 +433,7 @@ export default function TradeDesk() {
         </div>
       </nav>
 
-      {/* ââ Main content ââ */}
+      {/* ── Main content ── */}
       <main className="max-w-5xl mx-auto px-4 py-6">
 
         {activeTab === 'dispatch' && (
@@ -483,9 +483,9 @@ export default function TradeDesk() {
   )
 }
 
-// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-// TAB 1 â DISPATCH BOARD
-// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ═══════════════════════════════════════════════════════════════════
+// TAB 1 — DISPATCH BOARD
+// ═══════════════════════════════════════════════════════════════════
 
 function DispatchBoard({ jobs, allJobs, customers, filterTech, filterStatus,
                          setFilterTech, setFilterStatus, updateJob, onOpenJob }) {
@@ -533,7 +533,7 @@ function DispatchBoard({ jobs, allJobs, customers, filterTech, filterStatus,
       <div className="grid gap-3">
         {jobs.length === 0 && (
           <div className="text-center py-16 text-gray-400">
-            <div className="text-4xl mb-2">ð</div>
+            <div className="text-4xl mb-2">🔍</div>
             <p className="text-sm">No jobs match your filters</p>
           </div>
         )}
@@ -553,9 +553,9 @@ function DispatchBoard({ jobs, allJobs, customers, filterTech, filterStatus,
                         <span className={`text-xs font-semibold px-2 py-0.5 rounded-full border ${STATUS_COLORS[job.status]}`}>{job.status}</span>
                       </div>
                       <p className="font-semibold text-gray-900 mt-1 text-sm leading-snug">{job.description}</p>
-                      <p className="text-xs text-gray-500 mt-0.5 truncate">ð¤ {customer?.name}</p>
-                      <p className="text-xs text-gray-400 truncate">ð {job.address}</p>
-                      <p className="text-xs text-gray-400">ð {job.scheduledDate}</p>
+                      <p className="text-xs text-gray-500 mt-0.5 truncate">👤 {customer?.name}</p>
+                      <p className="text-xs text-gray-400 truncate">📍 {job.address}</p>
+                      <p className="text-xs text-gray-400">📅 {job.scheduledDate}</p>
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
@@ -588,7 +588,7 @@ function DispatchBoard({ jobs, allJobs, customers, filterTech, filterStatus,
                     onClick={() => onOpenJob(job.id)}
                     className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg font-semibold transition-colors whitespace-nowrap"
                   >
-                    Open Job â
+                    Open Job →
                   </button>
                 </div>
               </div>
@@ -600,16 +600,16 @@ function DispatchBoard({ jobs, allJobs, customers, filterTech, filterStatus,
   )
 }
 
-// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-// TAB 2 â JOB WORKFLOW
-// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ═══════════════════════════════════════════════════════════════════
+// TAB 2 — JOB WORKFLOW
+// ═══════════════════════════════════════════════════════════════════
 
 const WF_STEPS = [
-  { num: 1, label: 'Arrive',   icon: 'ð' },
-  { num: 2, label: 'Diagnose', icon: 'ð' },
-  { num: 3, label: 'Quote',    icon: 'ð°' },
-  { num: 4, label: 'Complete', icon: 'â' },
-  { num: 5, label: 'Invoice',  icon: 'ð' },
+  { num: 1, label: 'Arrive',   icon: '🚗' },
+  { num: 2, label: 'Diagnose', icon: '🔍' },
+  { num: 3, label: 'Quote',    icon: '💰' },
+  { num: 4, label: 'Complete', icon: '✅' },
+  { num: 5, label: 'Invoice',  icon: '📄' },
 ]
 const ISSUE_CATS = ['Maintenance', 'Repair', 'Installation', 'Replacement', 'Inspection', 'Emergency']
 
@@ -634,7 +634,7 @@ function JobWorkflow({ jobs, customers, activeJobId, setActiveJobId, activeJob,
         >
           {jobs.map(j => {
             const c = customers.find(c => c.id === j.customerId)
-            return <option key={j.id} value={j.id}>#{j.id} Â· {c?.name} â {j.description.substring(0, 42)}</option>
+            return <option key={j.id} value={j.id}>#{j.id} · {c?.name} — {j.description.substring(0, 42)}</option>
           })}
         </select>
       </div>
@@ -668,7 +668,7 @@ function JobWorkflow({ jobs, customers, activeJobId, setActiveJobId, activeJob,
                   : step === s.num ? 'bg-blue-600 text-white ring-2 ring-blue-300 shadow-md'
                   : 'bg-gray-100 text-gray-400'
                 }`}>
-                  {step > s.num ? 'â' : s.icon}
+                  {step > s.num ? '✓' : s.icon}
                 </div>
                 <span className={`text-[10px] font-semibold ${step >= s.num ? 'text-gray-700' : 'text-gray-400'}`}>{s.label}</span>
               </div>
@@ -682,23 +682,23 @@ function JobWorkflow({ jobs, customers, activeJobId, setActiveJobId, activeJob,
           </div>
         </div>
 
-        {/* ââ Step 1: Arrive ââ */}
+        {/* ── Step 1: Arrive ── */}
         {step === 1 && (
-          <WFCard icon="ð" title="Step 1 â Arrive on Site">
+          <WFCard icon="🚗" title="Step 1 — Arrive on Site">
             <p className="text-sm text-gray-500 mb-4">Tap <strong>Mark Arrived</strong> when you pull up. This records your arrival timestamp.</p>
             <button
               onClick={() => advanceStep(activeJob)}
               className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold text-base transition-colors"
             >
-              ð Mark Arrived
+              🚗 Mark Arrived
             </button>
           </WFCard>
         )}
 
-        {/* ââ Step 2: Diagnose ââ */}
+        {/* ── Step 2: Diagnose ── */}
         {step === 2 && (
-          <WFCard icon="ð" title="Step 2 â Diagnose">
-            {activeJob.arrivedAt && <p className="text-xs text-green-600 mb-3">â Arrived {activeJob.arrivedAt}</p>}
+          <WFCard icon="🔍" title="Step 2 — Diagnose">
+            {activeJob.arrivedAt && <p className="text-xs text-green-600 mb-3">✓ Arrived {activeJob.arrivedAt}</p>}
             <div className="space-y-3">
               <div>
                 <label className="text-xs font-bold text-gray-500 uppercase tracking-wide block mb-1">Issue Category *</label>
@@ -707,7 +707,7 @@ function JobWorkflow({ jobs, customers, activeJobId, setActiveJobId, activeJob,
                   onChange={e => updateWorkflow(activeJob.id, { diagnoseCategory: e.target.value })}
                   className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  <option value="">Selectâ¦</option>
+                  <option value="">Select…</option>
                   {ISSUE_CATS.map(c => <option key={c} value={c}>{c}</option>)}
                 </select>
               </div>
@@ -726,15 +726,15 @@ function JobWorkflow({ jobs, customers, activeJobId, setActiveJobId, activeJob,
                 onClick={() => advanceStep(activeJob)}
                 className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white py-2.5 rounded-xl font-bold transition-colors"
               >
-                Next: Build Quote â
+                Next: Build Quote →
               </button>
             </div>
           </WFCard>
         )}
 
-        {/* ââ Step 3: Quote ââ */}
+        {/* ── Step 3: Quote ── */}
         {step === 3 && (
-          <WFCard icon="ð°" title="Step 3 â Quote">
+          <WFCard icon="💰" title="Step 3 — Quote">
             {/* Existing line items */}
             <div className="space-y-1.5 mb-4">
               {activeJob.workflow.lineItems.length === 0
@@ -742,9 +742,9 @@ function JobWorkflow({ jobs, customers, activeJobId, setActiveJobId, activeJob,
                 : activeJob.workflow.lineItems.map(item => (
                     <div key={item.id} className="flex items-center gap-2 bg-gray-50 rounded-lg p-2 text-sm">
                       <span className="flex-1 truncate">{item.description}</span>
-                      <span className="text-gray-400 text-xs whitespace-nowrap">{item.qty}Ã${item.unitPrice.toFixed(2)}</span>
+                      <span className="text-gray-400 text-xs whitespace-nowrap">{item.qty}×${item.unitPrice.toFixed(2)}</span>
                       <span className="font-semibold w-16 text-right">${(item.qty * item.unitPrice).toFixed(2)}</span>
-                      <button onClick={() => removeLineItem(activeJob.id, item.id)} className="text-red-400 hover:text-red-600 ml-1 flex-shrink-0">â</button>
+                      <button onClick={() => removeLineItem(activeJob.id, item.id)} className="text-red-400 hover:text-red-600 ml-1 flex-shrink-0">✕</button>
                     </div>
                   ))
               }
@@ -790,21 +790,21 @@ function JobWorkflow({ jobs, customers, activeJobId, setActiveJobId, activeJob,
               onClick={() => advanceStep(activeJob)}
               className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white py-2.5 rounded-xl font-bold transition-colors"
             >
-              Next: Complete Work â
+              Next: Complete Work →
             </button>
           </WFCard>
         )}
 
-        {/* ââ Step 4: Complete ââ */}
+        {/* ── Step 4: Complete ── */}
         {step === 4 && (
-          <WFCard icon="â" title="Step 4 â Complete Work">
+          <WFCard icon="✅" title="Step 4 — Complete Work">
             <div className="space-y-3">
               <div>
                 <label className="text-xs font-bold text-gray-500 uppercase tracking-wide block mb-1">Completion Notes *</label>
                 <textarea
                   value={activeJob.workflow.completionNote}
                   onChange={e => updateWorkflow(activeJob.id, { completionNote: e.target.value })}
-                  placeholder="Summarise work completed and any recommendationsâ¦"
+                  placeholder="Summarise work completed and any recommendations…"
                   rows={5}
                   className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
@@ -814,22 +814,22 @@ function JobWorkflow({ jobs, customers, activeJobId, setActiveJobId, activeJob,
                 onClick={() => advanceStep(activeJob)}
                 className="w-full bg-green-600 hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white py-2.5 rounded-xl font-bold transition-colors"
               >
-                â Mark Job Complete
+                ✅ Mark Job Complete
               </button>
             </div>
           </WFCard>
         )}
 
-        {/* ââ Step 5: Invoice ââ */}
+        {/* ── Step 5: Invoice ── */}
         {step >= 5 && (
-          <WFCard icon="ð" title="Step 5 â Invoice">
+          <WFCard icon="📄" title="Step 5 — Invoice">
             <div className="mb-4">
               <div className="flex justify-between text-xs text-gray-400 mb-2">
                 <span>Description</span><span>Subtotal</span>
               </div>
               {activeJob.workflow.lineItems.map(item => (
                 <div key={item.id} className="flex justify-between text-sm py-1 border-b border-gray-50">
-                  <span className="text-gray-700">{item.description} ({item.qty}Ã)</span>
+                  <span className="text-gray-700">{item.description} ({item.qty}×)</span>
                   <span className="font-medium">${(item.qty * item.unitPrice).toFixed(2)}</span>
                 </div>
               ))}
@@ -840,15 +840,15 @@ function JobWorkflow({ jobs, customers, activeJobId, setActiveJobId, activeJob,
             </div>
 
             <div className="text-xs text-gray-400 space-y-0.5 mb-4">
-              <p>â Arrived:   {activeJob.arrivedAt}</p>
-              <p>â Completed: {activeJob.completedAt}</p>
-              <p>â Tech:      {TECHS.find(t => t.id === activeJob.techId)?.name}</p>
-              <p>â Category:  {activeJob.workflow.diagnoseCategory}</p>
+              <p>✓ Arrived:   {activeJob.arrivedAt}</p>
+              <p>✓ Completed: {activeJob.completedAt}</p>
+              <p>✓ Tech:      {TECHS.find(t => t.id === activeJob.techId)?.name}</p>
+              <p>✓ Category:  {activeJob.workflow.diagnoseCategory}</p>
             </div>
 
             {activeJob.workflow.invoiced ? (
               <div className="bg-purple-50 border border-purple-200 rounded-xl p-4 text-center">
-                <p className="text-purple-700 font-bold text-lg">â Invoiced</p>
+                <p className="text-purple-700 font-bold text-lg">✓ Invoiced</p>
                 <p className="text-purple-500 text-sm">${activeJob.invoiceAmount?.toFixed(2)}</p>
               </div>
             ) : (
@@ -856,7 +856,7 @@ function JobWorkflow({ jobs, customers, activeJobId, setActiveJobId, activeJob,
                 onClick={() => markInvoiced(activeJob)}
                 className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-xl font-bold transition-colors"
               >
-                ð Send Invoice â ${est.toFixed(2)}
+                📄 Send Invoice — ${est.toFixed(2)}
               </button>
              )}
           </WFCard>
@@ -879,9 +879,9 @@ function WFCard({ icon, title, children }) {
   )
 }
 
-// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-// TAB 3 â CUSTOMERS & EQUIPMENT
-// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ═══════════════════════════════════════════════════════════════════
+// TAB 3 — CUSTOMERS & EQUIPMENT
+// ═══════════════════════════════════════════════════════════════════
 
 function CustomersTab({ customers, jobs, expandedCust, setExpandedCust,
                         showAddCustomer, setShowAddCustomer, newCust, setNewCust, addCustomer }) {
@@ -931,7 +931,7 @@ function CustomersTab({ customers, jobs, expandedCust, setExpandedCust,
                       <p className="text-xs font-semibold text-gray-700">{c.lastService}</p>
                       <p className="text-xs text-gray-400">Next: {c.nextDue}</p>
                     </div>
-                    <span className="text-gray-300 text-sm">{open ? 'â¯' : 'â¼'}</span>
+                    <span className="text-gray-300 text-sm">{open ? '╯' : '▼'}</span>
                   </div>
                 </div>
               </button>
@@ -947,7 +947,7 @@ function CustomersTab({ customers, jobs, expandedCust, setExpandedCust,
                         {c.equipment.map(eq => (
                           <div key={eq.id} className="bg-gray-50 rounded-lg p-3 text-sm">
                             <div className="flex items-center gap-2">
-                              <span>{eq.type === 'HVAC' ? 'âï¸' : eq.type === 'Plumbing' ? 'ð©' : 'â¡'}</span>
+                              <span>{eq.type === 'HVAC' ? '❄️' : eq.type === 'Plumbing' ? '🔩' : '⚡'}</span>
                               <span className="font-semibold text-gray-800">{eq.brand} {eq.model}</span>
                               <span className="text-gray-400 text-xs">{eq.year}</span>
                             </div>
@@ -973,7 +973,7 @@ function CustomersTab({ customers, jobs, expandedCust, setExpandedCust,
                                   <span className={`px-1.5 py-0.5 rounded-full border flex-shrink-0 ${STATUS_COLORS[j.status]}`}>{j.status}</span>
                                 </div>
                                 <div className="text-gray-400 mt-0.5">
-                                  {j.scheduledDate} Â· {TECHS.find(t => t.id === j.techId)?.name}
+                                  {j.scheduledDate} · {TECHS.find(t => t.id === j.techId)?.name}
                                 </div>
                                 {j.invoiceAmount && <div className="text-green-700 font-bold mt-0.5">${j.invoiceAmount.toFixed(2)}</div>}
                               </div>
@@ -990,14 +990,14 @@ function CustomersTab({ customers, jobs, expandedCust, setExpandedCust,
         })}
       </div>
 
-      {/* ââ Add Customer Modal ââ */}
+      {/* ── Add Customer Modal ── */}
       {showAddCustomer && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex items-center justify-between mb-5">
                 <h3 className="text-lg font-bold text-gray-900">Add New Customer</h3>
-                <button onClick={() => setShowAddCustomer(false)} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">Ã</button>
+                <button onClick={() => setShowAddCustomer(false)} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">×</button>
               </div>
               <div className="space-y-3">
                 <Field label="Customer Name *">
@@ -1083,9 +1083,9 @@ function Field({ label, children }) {
   )
 }
 
-// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-// TAB 4 â DASHBOARD
-// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ═══════════════════════════════════════════════════════════════════
+// TAB 4 — DASHBOARD
+// ═══════════════════════════════════════════════════════════════════
 
 function Dashboard({ todayJobs, todayDone, todayActive,
                      thisWeekRev, lastWeekRev,
@@ -1105,22 +1105,22 @@ function Dashboard({ todayJobs, todayDone, todayActive,
 
       {/* KPI row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-        <KPICard label="Today's Jobs"    value={todayJobs.length} sub="total scheduled"   icon="ð" accent="blue"   />
-        <KPICard label="Complete Today"  value={todayDone}        sub={`of ${todayJobs.length} jobs`} icon="â" accent="green"  />
-        <KPICard label="Active Now"      value={todayActive}      sub="en route / in progress" icon="ð§" accent="yellow" />
-        <KPICard label="Outstanding"     value={`$${outstanding.toFixed(0)}`} sub="awaiting invoice" icon="ð¸" accent="orange" />
+        <KPICard label="Today's Jobs"    value={todayJobs.length} sub="total scheduled"   icon="📋" accent="blue"   />
+        <KPICard label="Complete Today"  value={todayDone}        sub={`of ${todayJobs.length} jobs`} icon="✅" accent="green"  />
+        <KPICard label="Active Now"      value={todayActive}      sub="en route / in progress" icon="🔧" accent="yellow" />
+        <KPICard label="Outstanding"     value={`$${outstanding.toFixed(0)}`} sub="awaiting invoice" icon="💸" accent="orange" />
       </div>
 
       {/* Revenue bar chart */}
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 mb-4">
         <div className="flex items-start justify-between gap-4 mb-5 flex-wrap">
           <div>
-            <h3 className="font-bold text-gray-900">Revenue â Last 7 Days</h3>
+            <h3 className="font-bold text-gray-900">Revenue — Last 7 Days</h3>
             <div className="flex items-center gap-3 mt-1">
               <span className="text-3xl font-bold text-gray-900">${thisWeekRev.toLocaleString()}</span>
               {revDelta !== null && (
                 <span className={`text-sm font-semibold px-2 py-0.5 rounded-full ${revDelta >= 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                  {revDelta >= 0 ? 'â' : 'â'} {Math.abs(revDelta)}% vs prev week
+                  {revDelta >= 0 ? '↑' : '↓'} {Math.abs(revDelta)}% vs prev week
                 </span>
               )}
             </div>
@@ -1147,7 +1147,7 @@ function Dashboard({ todayJobs, todayDone, todayActive,
                   />
                 </div>
                 <span className={`text-[10px] font-semibold leading-none ${isToday ? 'text-blue-600' : 'text-gray-400'}`}>
-                  {d.label}{isToday ? ' â' : ''}
+                  {d.label}{isToday ? ' ●' : ''}
                 </span>
               </div>
             )
@@ -1159,12 +1159,12 @@ function Dashboard({ todayJobs, todayDone, todayActive,
 
         {/* Top techs */}
         <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
-          <h3 className="font-bold text-gray-900 mb-4">Top Techs â Jobs Completed</h3>
+          <h3 className="font-bold text-gray-900 mb-4">Top Techs — Jobs Completed</h3>
           <div className="space-y-4">
             {techRanking.map((t, i) => (
               <div key={t.id} className="flex items-center gap-3">
                 <span className={`text-sm font-bold w-5 text-center ${i === 0 ? 'text-yellow-500' : 'text-gray-300'}`}>
-                  {i === 0 ? 'ð¥' : i === 1 ? 'ð¥' : i === 2 ? 'ð¥' : `${i+1}`}
+                  {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i+1}`}
                 </span>
                 <Avatar techId={t.id} />
                 <div className="flex-1">
